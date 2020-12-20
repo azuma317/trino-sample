@@ -1,0 +1,22 @@
+version: "3"
+services:
+  presto:
+    image: prestosql/presto
+    container_name: presto
+    hostname: presto
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./presto/:/usr/lib/presto/etc/
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
