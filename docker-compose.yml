@@ -1,15 +1,15 @@
 version: "3"
 services:
-  presto:
-    image: prestosql/presto
-    container_name: presto
-    hostname: presto
+  coodinator:
+    image: trinodb/trino:356
+    container_name: coodinator
+    hostname: trino
     ports:
       - "8080:8080"
     volumes:
-      - ./presto/:/usr/lib/presto/etc/
-    depends_on:
-      - mysql
+      - ./trino/:/etc/trino/
+    networks:
+      - trino
   mysql:
     image: mysql:5.7
     restart: always
@@ -20,3 +20,8 @@ services:
     volumes:
       - ./mysql/conf.d:/etc/mysql/conf.d
       - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    networks:
+      - trino
+networks:
+  trino:
+    driver: bridge
