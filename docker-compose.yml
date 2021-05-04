@@ -1,9 +1,8 @@
 version: "3"
 services:
-  coodinator:
+  coordinator:
     image: trinodb/trino:356
-    container_name: coodinator
-    hostname: trino
+    container_name: coordinator
     ports:
       - "8080:8080"
     volumes:
@@ -13,6 +12,7 @@ services:
   mysql:
     image: mysql:5.7
     restart: always
+    container_name: mysql
     ports:
       - "3306:3306"
     environment:
