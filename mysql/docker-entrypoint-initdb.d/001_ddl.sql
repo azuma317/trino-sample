@@ -1,8 +1,7 @@
----- create ----
 CREATE DATABASE IF NOT EXISTS mydb;
 
-CREATE TABLE IF NOT EXISTS mydb.test
+CREATE TABLE IF NOT EXISTS mydb.users
 (
- `id`               INT(20) AUTO_INCREMENT PRIMARY KEY,
- `name`             VARCHAR(120) NOT NULL
+  `id`               INT(20) AUTO_INCREMENT PRIMARY KEY,
+  `name`             VARCHAR(120) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
